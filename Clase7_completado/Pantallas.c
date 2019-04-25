@@ -32,15 +32,27 @@ int pan_showArray(Pantalla* pPantallas,int len)
 int pan_create(Pantalla* pPantallas,int len, int pIndex, char* msgE)
 {
     char bufferN[20];
-    char bufferS[20];
+    char bufferD[20];
+    char bufferStrPrecio[20];
+    char bufferStrTipo[20];
+    int bufferT;
+    float bufferP;
 
-    if((getStringLetras(bufferN,"Ingrese nombre: ",msgE,2) == 0) && (getStringLetras(bufferS,"Ingrese apellido: ",msgE,2) == 0))
+    if((getStringLetras(bufferN,"Ingrese nombre: ",msgE,2) == 0) && (getStringLetras(bufferD,"Ingrese direccion: ",msgE,2) == 0))
     {
-        strncpy(pPantallas[pIndex].name,bufferN,20);
+        strncpy(pPantallas[pIndex].nombre,bufferN,sizeof(bufferN));
         //*pPantallas[pIndex].name=bufferN;
-        strncpy(pPantallas[pIndex].surname,bufferS,20);
+        strncpy(pPantallas[pIndex].direccion,bufferD,sizeof(bufferD));
         //*pPantallas[pIndex].surname=bufferS;
-        pPantallas[pIndex].isEmpty=0;
+        if(!getString(bufferStrPrecio,"Ingrese precio: ",msgE) && isNumber(bufferStrPrecio))
+        {
+            bufferP = atof(bufferStrPrecio);
+            if(!getString(bufferStrTipo,"Ingrese tipo: ",msgE) && isNumber(bufferStrTipo))
+            {
+                bufferT = atoi(bufferStrTipo);
+                pPantallas[pIndex].isEmpty=0;
+            }
+        }
     }
     else
     {
@@ -63,4 +75,44 @@ int pan_searchFreeSpace(Pantalla* pPantallas, int len, int* pIndex)
         }
     }
     return ret;
+}
+
+
+
+
+int pan_buscarEnArray (Pantalla* pPantallas, int cantidad, int* pantallaEncontrada,char* msgE)
+{
+    int ret=1;
+    int posPantalla;
+    Pantalla auxPantallas;
+
+    if (getString(auxPantallas,"ingrese el ID de la pantalla que quiera eliminar: ",msgE)==0)
+    {
+        //auxEmpleados.nombre=tolower(auxEmpleados.nombre);
+        ret=-1;
+        for(int i=0;i<cantidad;i++)
+        {
+            //empleados[i].nombre=tolower(empleados[i].nombre);
+            if (pPantallas[posPantalla].isEmpty==0 && strcmp(pPantallas[i].idPantalla, auxPantallas.idPantalla)==0)
+            {
+                ret=0;
+                *pantallaEncontrada=i;
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+int pan_delete(Pantalla * pPantallas, int cantidad,char* msgE)
+{
+    int posPantalla;
+    if (pan_buscarEnArray(pPantallas,cantidad,&posPantalla,msgE) == 0)
+    {
+        printf("hubo coincidencia\n\n");
+        pPantallas[posPantalla].isEmpty=0;
+        printf("La pantalla a borrar es: %d\n\n",pPantallas[posPantalla].idPantalla);
+    }
+
+    return 0;
 }

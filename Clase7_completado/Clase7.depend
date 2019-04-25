@@ -100,3 +100,47 @@
 
 1556149033 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/Publicidades.c
 
+1556154983 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556162799 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\arraynuevo.h
+
+1556154983 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\empleado.h
+
+1556170291 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556173308 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"publicidades.h"
+
+1556176020 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.h
+
+1556163232 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556175893 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.h
+
+1556172530 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"pantallas.h"
+

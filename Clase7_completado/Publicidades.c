@@ -21,7 +21,7 @@ int pub_showArray(Publicidad* pPublicidades,int len)
     {
         //if(pPublicidades[i].isEmpty == 0)
         //{
-            printf("Publicidad %d:%s %s %d \n",i,pPublicidades[i].cuit,pPublicidades[i].archivo,pPublicidades[i].dias);
+            printf("Publicidad %d:%s %s %d \n",i,pPublicidades[i].cuitCliente,pPublicidades[i].archivo,pPublicidades[i].dias);
         //}
     }
     return 0;
@@ -29,16 +29,22 @@ int pub_showArray(Publicidad* pPublicidades,int len)
 
 int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE)
 {
-    char bufferN[20];
-    char bufferS[20];
+    char bufferC[20];
+    char bufferA[20];
+    int bufferD;
+    char bufferStrDias[20];
 
-    if((getStringLetras(bufferN,"Ingrese nombre: ",msgE,2) == 0) && (getStringLetras(bufferS,"Ingrese apellido: ",msgE,2) == 0))
+    if((getStringLetras(bufferC,"Ingrese cuit: ",msgE,2) == 0) && (getStringLetras(bufferA,"Ingrese nombre de archivo: ",msgE,2) == 0))
     {
-        strncpy(pPublicidades[pIndex].name,bufferN,20);
+        strncpy(pPublicidades[pIndex].cuitCliente,bufferC,20);
         //*pPublicidades[pIndex].name=bufferN;
-        strncpy(pPublicidades[pIndex].surname,bufferS,20);
+        strncpy(pPublicidades[pIndex].archivo,bufferA,20);
         //*pPublicidades[pIndex].surname=bufferS;
-        pPublicidades[pIndex].isEmpty=0;
+        if(!getString(bufferStrDias,"Ingrese cantidad de dias: ",msgE) && isNumber(bufferStrDias))
+        {
+            bufferD = atoi(bufferStrDias);
+            pPublicidades[pIndex].isEmpty=0;
+        }
     }
     else
     {

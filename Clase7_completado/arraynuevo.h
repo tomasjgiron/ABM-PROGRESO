@@ -29,5 +29,4 @@ int isAlphanumeric (char* pStr);
 int isTelephone (char* pStr);
 int isDni (char* pStr);
 int isCuit (char* pStr);
-int passwordCheck (char* pStr,char* correctPass,char* msg, char* msgE, int reintentos);
 #endif // ARRAYNUEVO_H_INCLUDED

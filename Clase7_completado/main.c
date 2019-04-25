@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "arraynuevo.h"
-#include "empleado.h"
+#include "Pantallas.h"
+#include "Publicidades.h"
 #define  CANT_PAN 100
 #define  CANT_PUB 1000
 
@@ -13,11 +14,11 @@ int main()
     int posLibre;
     int opcion=0;
 
-    pan_initializeArray(pantallas,);
+    ///inicializar los arrays
     while(opcion!=10)
     {
         getIntInRange(&opcion,
-                      "1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n5)Modificar publicidad\n6)Baja publicidad\n7)\n8)Mostrar publicidades\n9)Mostrar pantallas\n10a)Informar\n10b)\n11)Salir",
+                      "1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n5)Modificar publicidad\n6)Baja publicidad\n7)\n8)Mostrar publicidades\n9)Mostrar pantallas\n10a)Informar una cosa\n10b)Informar otra cosa\n11)Salir",
                       "NO!",
                       1,10,2);
 
@@ -25,17 +26,17 @@ int main()
         {
             case 1:
             {
-                if(Employee_searchFreeSpace(pantallas ,LEN_LISTA,&posLibre) == 0)
+                if(pan_searchFreeSpace(pantallas ,CANT_PAN,&posLibre) == 0)
                 {
                     printf("se encontro lugar en: %d\n",posLibre);
-                    Employee_create(pantallas ,LEN_LISTA,posLibre,"Error");
-                    Employee_showArray(pantallas ,LEN_LISTA);
+                    pan_create(pantallas ,CANT_PAN,posLibre,"Error");
+                    pan_showArray(pantallas ,CANT_PAN);
                 }
                 break;
             }
             case 2:
             {
-                Employee_showArray(pantallas ,LEN_LISTA);
+                pan_showArray(pantallas ,CANT_PAN);
                 break;
             }
             case 4:

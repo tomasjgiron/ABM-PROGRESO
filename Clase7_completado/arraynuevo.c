@@ -419,23 +419,3 @@ int isCuit (char* pStr)
     }
     return ret;
 }
-
-int passwordCheck (char* pStr,char* correctPass,char* msg, char* msgE, int reintentos)
-{
-    int ret=0;
-    while(ret==0 && reintentos>0)
-    {
-        if(strcmp(pStr,correctPass)==0)
-        {
-            printf("%s",msg);
-            ret=1;
-        }
-        else
-        {
-            reintentos--;
-           printf("%s",msgE);
-        }
-    }
-    return ret;
-}
-
