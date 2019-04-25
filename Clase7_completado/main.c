@@ -4,21 +4,23 @@
 #include "arraynuevo.h"
 #include "Pantallas.h"
 #include "Publicidades.h"
-#define  CANT_PAN 100
-#define  CANT_PUB 1000
+#define  CANT_PAN 6
+#define  CANT_PUB 6
 
 int main()
 {
     Pantalla pantallas[CANT_PAN];
-    Publicidad publicidades[CANT_PUB];
+    int opcion = 0;
     int posLibre;
-    int opcion=0;
+    int idPan = 1;
 
-    ///inicializar los arrays
+    pan_initializeArray(pantallas,CANT_PAN);
     while(opcion!=10)
     {
         getIntInRange(&opcion,
-                      "1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n5)Modificar publicidad\n6)Baja publicidad\n7)\n8)Mostrar publicidades\n9)Mostrar pantallas\n10a)Informar una cosa\n10b)Informar otra cosa\n11)Salir",
+                      "1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n"
+                      "5)Modificar publicidad\n6)Baja publicidad\n7)\n8)Mostrar publicidades\n"
+                      "9)Mostrar pantallas\n10a)Informar una cosa\n10b)Informar otra cosa\n11)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",
                       "NO!",
                       1,10,2);
 
@@ -26,17 +28,24 @@ int main()
         {
             case 1:
             {
-                if(pan_searchFreeSpace(pantallas ,CANT_PAN,&posLibre) == 0)
+                posLibre = pan_searchFreeSpace(pantallas,CANT_PAN);
+                if(posLibre>=0)
                 {
-                    printf("se encontro lugar en: %d\n",posLibre);
-                    pan_create(pantallas ,CANT_PAN,posLibre,"Error");
-                    pan_showArray(pantallas ,CANT_PAN);
+                    printf("\n\tSe encontró lugar\t\n");
+                    if(pan_create(pantallas,CANT_PAN,posLibre,idPan,"Informacion invalida"))
+                    {
+                        idPan++;
+                        pan_showArray(pantallas,CANT_PAN);
+                    }
+                }
+                else
+                {
+                    printf("\n\tNo hay lugar libre\t\n");
                 }
                 break;
             }
             case 2:
             {
-                pan_showArray(pantallas ,CANT_PAN);
                 break;
             }
             case 4:

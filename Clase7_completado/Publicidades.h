@@ -17,7 +17,7 @@ int pub_showArray(Publicidad* pPublicidades,int len);
 
 int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE);
 
-int pub_searchFreeSpace(Publicidad* pPublicidades, int len, int* pIndex);
+int pub_searchFreeSpace(Publicidad* pPublicidades, int len);
 
 int pub_buscarEnArray (Publicidad* publicidad, int cantidad, int* PublicidadEncontrada,char* msgE);
 int pub_baja(Publicidad* publicidad, int cantidad,char* msgE);

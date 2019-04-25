@@ -111,7 +111,7 @@
 
 1556154983 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\empleado.h
 
-1556170291 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\main.c
+1556224308 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -119,14 +119,14 @@
 	"Pantallas.h"
 	"Publicidades.h"
 
-1556173308 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.c
+1556221209 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"arraynuevo.h"
 	"publicidades.h"
 
-1556176020 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.h
+1556221216 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\publicidades.h
 
 1556163232 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\arraynuevo.c
 	<stdio.h>
@@ -135,9 +135,9 @@
 	"arraynuevo.h"
 	"empleado.h"
 
-1556175893 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.h
+1556222574 c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.h
 
-1556172530 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.c
+1556223594 source:c:\users\tomas\desktop\abm-progreso-master\clase7_completado\pantallas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

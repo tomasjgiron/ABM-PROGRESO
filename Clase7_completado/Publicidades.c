@@ -43,6 +43,7 @@ int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE)
         if(!getString(bufferStrDias,"Ingrese cantidad de dias: ",msgE) && isNumber(bufferStrDias))
         {
             bufferD = atoi(bufferStrDias);
+            pPublicidades[pIndex].dias = bufferD;
             pPublicidades[pIndex].isEmpty=0;
         }
     }
@@ -53,7 +54,7 @@ int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE)
     return 0;
 }
 
-int pub_searchFreeSpace(Publicidad* pPublicidades, int len, int* pIndex)
+int pub_searchFreeSpace(Publicidad* pPublicidades, int len)
 {
     int i;
     int ret=-1;
@@ -61,8 +62,7 @@ int pub_searchFreeSpace(Publicidad* pPublicidades, int len, int* pIndex)
     {
         if(pPublicidades[i].isEmpty==1)
         {
-            *pIndex = i;
-            ret = 0;
+            ret = i;
             break;
         }
     }
