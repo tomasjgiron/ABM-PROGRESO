@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1556228366 source:/home/alumno/Documentos/clase07/ABM_MODELO/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556235493 /home/alumno/Documentos/clase07/ABM_MODELO/arraynuevo.h
+
+1556228366 /home/alumno/Documentos/clase07/ABM_MODELO/empleado.h
+
+1556235463 source:/home/alumno/Documentos/clase07/ABM_MODELO/arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556235310 source:/home/alumno/Documentos/clase07/ABM_MODELO/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556233038 /home/alumno/Documentos/clase07/ABM_MODELO/Pantallas.h
+
+1556228366 /home/alumno/Documentos/clase07/ABM_MODELO/Publicidades.h
+
+1556235541 source:/home/alumno/Documentos/clase07/ABM_MODELO/Pantallas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"pantallas.h"
+
+1556235704 /home/alumno/Documentos/clase07/ABM_MODELO/pantallas.h
+
