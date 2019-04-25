@@ -1,0 +1,102 @@
+# depslib dependency file v1.0
+1555023803 source:/home/profesor/Ernesto/LABO12019/Clase7/Clase7/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1555035627 
+
+1555022033 source:/home/profesor/Ernesto/LABO12019/Clase7/Clase7/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555021580 /home/profesor/Ernesto/LABO12019/Clase7/Clase7/utn.h
+
+1555035370 source:d:\ernesto\googledrive\labo1\2019\1er_cuat\clase7_ernesto_1e\clase7\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555021580 d:\ernesto\googledrive\labo1\2019\1er_cuat\clase7_ernesto_1e\clase7\utn.h
+
+1555035627 source:d:\ernesto\googledrive\labo1\2019\1er_cuat\clase7_ernesto_1e\clase7\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555546407 source:/home/alumno/Documentos/Giron - Clase 07/Clase7_completado/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555546493 /home/alumno/Documentos/Giron - Clase 07/Clase7_completado/utn.h
+
+1555550034 source:c:\users\tomas\desktop\labo1_clases-master\clase7_completado\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555550034 c:\users\tomas\desktop\labo1_clases-master\clase7_completado\utn.h
+
+1555621351 source:c:\users\tomas\desktop\labo1_clases-master\clase7_completado\arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1555633884 h"
+
+1555621331 c:\users\tomas\desktop\labo1_clases-master\clase7_completado\arraynuevo.h
+
+1555633879 c:\users\tomas\desktop\labo1_clases-master\clase7_completado\empleado.h
+
+1555633870 source:c:\users\tomas\desktop\labo1_clases-master\clase7_completado\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1555633884 source:c:\users\tomas\desktop\labo1_clases-master\clase7_completado\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556141524 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556141524 /home/alumno/Descargas/labo1_clases-master/Clase7_completado/arraynuevo.h
+
+1556141524 /home/alumno/Descargas/labo1_clases-master/Clase7_completado/empleado.h
+
+1556148786 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556141524 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556148888 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/Pantallas.c
+
+1556149033 source:/home/alumno/Descargas/labo1_clases-master/Clase7_completado/Publicidades.c
+
