@@ -40,7 +40,7 @@ int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE)
         //*pPublicidades[pIndex].name=bufferN;
         strncpy(pPublicidades[pIndex].archivo,bufferA,20);
         //*pPublicidades[pIndex].surname=bufferS;
-        if(!getString(bufferStrDias,"Ingrese cantidad de dias: ",msgE) && isNumber(bufferStrDias))
+        if(!getString(bufferStrDias,"Ingrese cantidad de dias: ",msgE) && isNumberInt(bufferStrDias))
         {
             bufferD = atoi(bufferStrDias);
             pPublicidades[pIndex].dias = bufferD;

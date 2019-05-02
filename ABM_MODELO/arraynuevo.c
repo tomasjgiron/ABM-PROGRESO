@@ -432,7 +432,7 @@ int isDni (char* pStr)
     int i=0;
     while(pStr[i]!='\0')
     {
-        if(!isNumber(pStr))
+        if(!isNumberInt(pStr))
         {
             return 0;
         }

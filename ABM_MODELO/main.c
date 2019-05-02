@@ -10,30 +10,18 @@
 
 int main()
 {
-    char num;
-    fgets(num,20,stdin);
-    if(isNumberFloat(num))
-    {
-        printf("es valido");
-    }
-    else
-    {
-        printf("es invalido");
-    }
-
-    return 0;
     Pantalla pantallas[CANT_PAN];
     int opcion = 0;
     int posLibre;
     int idPan = 1;
 
     pan_initializeArray(pantallas,CANT_PAN);
-    while(opcion!=10)
+    while(opcion!=11)
     {
         getIntInRange(&opcion,
-                      "1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n"
-                      "5)Modificar publicidad\n6)Baja publicidad\n7)\n8)Mostrar publicidades\n"
-                      "9)Mostrar pantallas\n10a)Informar una cosa\n10b)Informar otra cosa\n11)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",
+                      "\n1)Alta de pantalla\n2)Listar\n3)Modificar pantalla\n4)Baja de pantalla\n5)Alta publicidad\n"
+                      "6)Modificar publicidad\n7)Baja publicidad\n8)\n9)Mostrar publicidades\n"
+                      "10)Mostrar pantallas\n11a)Informar una cosa\n11b)Informar otra cosa\n12)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",
                       "NO!",
                       1,10,2);
 
@@ -44,7 +32,7 @@ int main()
                 posLibre = pan_searchFreeSpace(pantallas,CANT_PAN);
                 if(posLibre>=0)
                 {
-                    printf("\n\tSe encontró lugar\t\n");
+                    printf("\n\t~~~~Se encontró lugar~~~~\t\n");
                     if(pan_create(pantallas,CANT_PAN,posLibre,idPan,"Informacion invalida",TRIES))
                     {
                         idPan++;
@@ -53,19 +41,55 @@ int main()
                 }
                 else
                 {
-                    printf("\n\tNo hay lugar libre\t\n");
+                    printf("\n\t~~~~No hay lugar libre~~~~\t\n");
                 }
                 break;
             }
             case 2:
             {
+                pan_showArray(pantallas,CANT_PAN);
+                break;
+            }
+            case 3:
+            {
+                if(pan_modifyByID(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+                {
+                    printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
+                }
                 break;
             }
             case 4:
-            {
-
-                break;
-            }
+                {
+                    if(pan_bajaLogica(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+                    {
+                        printf("\n\t~~~~Se pudo dar de baja~~~~");
+                    }
+                    break;
+                }
+            case 5:
+                {
+                    break;
+                }
+            case 6:
+                {
+                    break;
+                }
+            case 7:
+                {
+                    break;
+                }
+            case 8:
+                {
+                    break;
+                }
+            case 9:
+                {
+                    break;
+                }
+            case 10:
+                {
+                    break;
+                }
         }
     }
 

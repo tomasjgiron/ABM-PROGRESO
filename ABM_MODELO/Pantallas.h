@@ -14,14 +14,13 @@ int pan_initializeArray(Pantalla* pPantallas, int len);
 
 int pan_showArray(Pantalla* pPantallas,int len);
 
-int pan_create(Pantalla* pPantallas,int len, int pIndex,int idPan, char* msgE, int tries);
+int pan_create(Pantalla* pPantallas,int len, int pIndex,int idPan, char* msgE,int tries);
 
 int pan_searchFreeSpace(Pantalla* pPantallas, int len);
 
-int pan_findPosID(Pantalla* pPantallas, int len,int idPan);
+int pan_orderByPrice(Pantalla* pPantallas,int len);
 
-int pan_bajaLogica(Pantalla* pPantallas, int len,char* msgE,int tries);
+int pan_orderByID(Pantalla* pPantallas,int len);
 
-int pan_modifyByID(Pantalla* pPantallas,int len, char* msgE,int tries);
 
 #endif // PANTALLAS_H_INCLUDED

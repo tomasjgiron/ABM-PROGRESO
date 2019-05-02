@@ -38,3 +38,48 @@
 
 1556235704 /home/alumno/Documentos/clase07/ABM_MODELO/pantallas.h
 
+1556237351 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556236361 c:\users\tomas\desktop\abm-progreso-master\abm_modelo\arraynuevo.h
+
+1556236361 c:\users\tomas\desktop\abm-progreso-master\abm_modelo\empleado.h
+
+1556236361 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556239789 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\pantallas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"pantallas.h"
+	"Publicidades.h"
+
+1556754331 c:\users\tomas\desktop\abm-progreso-master\abm_modelo\pantallas.h
+
+1556236361 c:\users\tomas\desktop\abm-progreso-master\abm_modelo\publicidades.h
+
+1556556779 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556237104 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\publicidades.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"publicidades.h"
+
