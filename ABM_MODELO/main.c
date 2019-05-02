@@ -11,9 +11,10 @@
 int main()
 {
     Pantalla pantallas[CANT_PAN];
+    Publicidad publicidades[CANT_PUB];
     int opcion = 0;
     int posLibre;
-    int idPan = 1;
+    int flag = 0;
 
     pan_initializeArray(pantallas,CANT_PAN);
     while(opcion!=11)
@@ -33,10 +34,10 @@ int main()
                 if(posLibre>=0)
                 {
                     printf("\n\t~~~~Se encontró lugar~~~~\t\n");
-                    if(pan_create(pantallas,CANT_PAN,posLibre,idPan,"Informacion invalida",TRIES))
+                    if(pan_create(pantallas,CANT_PAN,posLibre,"Informacion invalida",TRIES) == 0)
                     {
-                        idPan++;
                         pan_showArray(pantallas,CANT_PAN);
+                        flag = 1;
                     }
                 }
                 else
@@ -47,15 +48,23 @@ int main()
             }
             case 2:
             {
-                pan_showArray(pantallas,CANT_PAN);
+                if(flag == 1)
+                {
+                   pan_showArray(pantallas,CANT_PAN);
+                }
+                printf("\n~~~~No hay nada para mostrar~~~~\n");
                 break;
             }
             case 3:
             {
-                if(pan_modifyByID(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+                if(flag == 1)
                 {
-                    printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
+                    if(pan_modifyByID(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+                    {
+                        printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
+                    }
                 }
+                printf("\n~~~~No hay registros para modificar~~~~\n");
                 break;
             }
             case 4:

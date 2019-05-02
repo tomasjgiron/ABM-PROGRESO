@@ -2,69 +2,149 @@
 #include <stdlib.h>
 #include <string.h>
 #include "arraynuevo.h"
-#include "publicidades.h"
+#include "Pantallas.h"
+#include "Publicidades.h"
+
+static int generateID(void);
 
 int pub_initializeArray(Publicidad* pPublicidades, int len)
 {
     int i;
-    for(i=0; i<len;i++)
-    {
-        pPublicidades[i].isEmpty = 1;
-    }
-    return 0;
-}
 
-int pub_showArray(Publicidad* pPublicidades,int len)
-{
-    int i;
-    for(i=0;i<len;i++)
+    if(pPublicidades != NULL && len > 0)
     {
-        //if(pPublicidades[i].isEmpty == 0)
-        //{
-            printf("Publicidad %d:%s %s %d \n",i,pPublicidades[i].cuitCliente,pPublicidades[i].archivo,pPublicidades[i].dias);
-        //}
-    }
-    return 0;
-}
-
-int pub_create(Publicidad* pPublicidades,int len, int pIndex, char* msgE)
-{
-    char bufferC[20];
-    char bufferA[20];
-    int bufferD;
-    char bufferStrDias[20];
-
-    if((getStringLetras(bufferC,"Ingrese cuit: ",msgE,2) == 0) && (getStringLetras(bufferA,"Ingrese nombre de archivo: ",msgE,2) == 0))
-    {
-        strncpy(pPublicidades[pIndex].cuitCliente,bufferC,20);
-        //*pPublicidades[pIndex].name=bufferN;
-        strncpy(pPublicidades[pIndex].archivo,bufferA,20);
-        //*pPublicidades[pIndex].surname=bufferS;
-        if(!getString(bufferStrDias,"Ingrese cantidad de dias: ",msgE) && isNumberInt(bufferStrDias))
+       for(i=0; i<len;i++)
         {
-            bufferD = atoi(bufferStrDias);
-            pPublicidades[pIndex].dias = bufferD;
-            pPublicidades[pIndex].isEmpty=0;
+            pPublicidades[i].isEmpty = 1;
+        }
+    }
+    return 0;
+}
+
+int pub_create(Publicidad* pPublicidades,Pantalla* pPantallas,int len, char* msgE,int tries)
+{
+    int auxiliarID;
+    int posOfID;
+    char bufferCuCli[20];
+    char bufferNaFi[20];
+    char bufferStrDia[20];
+    int bufferDia;
+    int ret = -1;
+
+    if(pPublicidades != NULL && len > 0) ///SIEMPRE VALIDAR AL USAR ARRAYS
+    {
+        auxiliarID = pub_getID(pPublicidades,len,msgE,tries);
+        posOfID = pan_findPosID(pPantallas,len,auxiliarID);
+        if((auxiliarID >= 1) && (posOfID != -1))
+        {
+            if((getCuit(bufferCuCli,"Ingrese cuit de cliente: ",msgE,tries) == 0) &&
+            (getStringAlphanumeric(bufferNaFi,"Ingrese nombre de archivo: ",msgE,tries) == 0))
+            {
+                if(getStringNumerosInt(bufferStrDia,"Ingrese cantidad de dias: ",msgE,tries) == 0)
+                {
+                    bufferDia = atoi(bufferStrDia);
+                    strncpy(pPublicidades[posOfID].cuitCliente,bufferCuCli,sizeof(bufferCuCli));
+                    strncpy(pPublicidades[posOfID].archivo,bufferNaFi,sizeof(bufferNaFi));
+                    pPublicidades[posOfID].dias = bufferDia;
+                    pPublicidades[posOfID].isEmpty = 0;
+                    pPublicidades[posOfID].idPublicidad = generateID();
+                    ret = 0;
+                }
+            }
         }
     }
     else
     {
-        printf(msgE);
+        printf("\n~~~~El ID es invalido~~~~\n");
     }
-    return 0;
+
+    return ret;
 }
 
 int pub_searchFreeSpace(Publicidad* pPublicidades, int len)
 {
     int i;
     int ret=-1;
-    for(i=0;i<len;i++)
+
+    if(pPublicidades != NULL && len > 0)
     {
-        if(pPublicidades[i].isEmpty==1)
+       for(i=0;i<len;i++)
         {
-            ret = i;
-            break;
+            if(pPublicidades[i].isEmpty==1)
+            {
+                ret = i;
+                break;
+            }
         }
     }
     return ret;
+}
+
+int pub_findPosID(Publicidad* pPublicidades, int len,int idPub)
+{
+    int i;
+    int ret=-1;
+
+    if(pPublicidades != NULL && len > 0)
+    {
+      for(i = 0;i < len;i++)
+        {
+            if(pPublicidades[i].idPublicidad == idPub)
+            {
+                ret = i;
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+int pub_bajaLogica(Publicidad* pPublicidades, int len,char* msgE,int tries)
+{
+    int auxiliarID;
+    int posID;
+    int ret = -1;
+
+    if(pPublicidades != NULL && len > 0)
+    {
+       auxiliarID = pub_getID(pPublicidades,len,msgE,tries);
+       if(auxiliarID >= 1)
+       {
+            posID = pub_findPosID(pPublicidades,len,auxiliarID);
+            if(posID != -1)
+            {
+                pPublicidades[posID].isEmpty = 1;
+                ret = 0;
+            }
+            else
+            {
+                printf("\n\tID inexistente\t\n");
+            }
+
+        }
+    }
+    return ret;
+}
+
+int pub_getID(Publicidad * pPublicidad, int len, char* msgE, int tries)
+{
+    char bufferID[20];
+    int auxiliarID;
+    int ret = -1;
+
+    if(pPublicidad != NULL && len > 0)
+    {
+        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        {
+            auxiliarID = atoi(bufferID);
+            ret = auxiliarID;
+        }
+    }
+    return ret;
+}
+
+static int generateID(void)
+{
+    static int idPub = 0;
+    return idPub++;
 }

@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "arraynuevo.h"
-#include "pantallas.h"
+#include "Pantallas.h"
 #include "Publicidades.h"
 #define LCD 1
 #define LED 2
+
+static int generateID(void);
 
 int pan_initializeArray(Pantalla* pPantallas, int len)
 {
@@ -45,7 +47,7 @@ int pan_showArray(Pantalla* pPantallas,int len)
     return 0;
 }
 
-int pan_create(Pantalla* pPantallas,int len, int pIndex,int idPan, char* msgE,int tries)
+int pan_create(Pantalla* pPantallas,int len, int pIndex,char* msgE,int tries)
 {
     char bufferN[20];
     char bufferD[20];
@@ -72,7 +74,7 @@ int pan_create(Pantalla* pPantallas,int len, int pIndex,int idPan, char* msgE,in
                         pPantallas[pIndex].precio = bufferP;
                         pPantallas[pIndex].tipo = bufferT;
                         pPantallas[pIndex].isEmpty = 0;
-                        pPantallas[pIndex].idPantalla = idPan;
+                        pPantallas[pIndex].idPantalla = generateID();
                         ret = 0;
                     }
 
@@ -115,7 +117,7 @@ int pan_findPosID(Pantalla* pPantallas, int len,int idPan)
     {
       for(i=0;i<len;i++)
         {
-            if(pPantallas[i].idPantalla==idPan)
+            if(pPantallas[i].idPantalla == idPan)
             {
                 ret = i;
                 break;
@@ -127,16 +129,15 @@ int pan_findPosID(Pantalla* pPantallas, int len,int idPan)
 
 int pan_bajaLogica(Pantalla* pPantallas, int len,char* msgE,int tries)
 {
-    char bufferID[20];
     int auxiliarID;
     int posID;
     int ret = -1;
 
     if(pPantallas != NULL && len > 0)
     {
-       if(getStringNumerosInt(bufferID,"\nIngrese id: ",msgE,tries) == 0)
-        {
-            auxiliarID = atoi(bufferID);
+       auxiliarID = pan_getID(pPantallas,len,msgE,tries);
+       if(auxiliarID >= 1)
+       {
             posID = pan_findPosID(pPantallas,len,auxiliarID);
             if(posID != -1)
             {
@@ -169,9 +170,9 @@ int pan_modifyByID(Pantalla* pPantallas,int len, char* msgE,int tries)
     {
         do
         {
-            if(getStringNumerosInt(auxiliarID,"\nIngrese id: ",msgE,tries) == 0)
+            auxiliarID = pan_getID(pPantallas,len,msgE,tries);
+            if(auxiliarID >= 1)
             {
-                auxiliarID = atoi(auxiliarID);
                 posID = pan_findPosID(pPantallas,len,auxiliarID);
                 if(posID != -1)
                 {
@@ -198,18 +199,18 @@ int pan_modifyByID(Pantalla* pPantallas,int len, char* msgE,int tries)
                             pPantallas[posID].precio = bufferP;
                             pPantallas[posID].tipo = bufferT;
                             pPantallas[posID].isEmpty = 0;
-                            pPantallas[posID].idPantalla = idPan;
                             ret = 0;
                         }
 
                     }
                 }
             }
-        }(while == -1)
+        }while(ret == -1);
+    }
     return ret;
 }
 
-int pan_orderByPrice(Pantalla* pPantallas,int len)
+int pan_sortByPrice(Pantalla* pPantallas,int len)
 {
     int i;
     int j;
@@ -223,7 +224,7 @@ int pan_orderByPrice(Pantalla* pPantallas,int len)
             {
                 continue;
             }
-            for(j=i+1,j<len;j++)
+            for(j=i+1;j<len;j++)
             {
                 if(pPantallas[j].isEmpty == 1)
                 {
@@ -241,31 +242,31 @@ int pan_orderByPrice(Pantalla* pPantallas,int len)
     return 0;
 }
 
-int pan_orderByID(Pantalla* pPantallas,int len)
+int pan_sortByID(Pantalla* pPantallas,int len)
 {
     int i;
     int j;
-    Pantalla buffer;
+    Pantalla auxiliar;
 
     if(pPantallas != NULL && len > 0)
     {
-        for(i=0;i<len-1;i++)
+        for(i = 0;i < len-1;i++)
         {
             if(pPantallas[i].isEmpty == 1)
             {
                 continue;
             }
-            for(j=i+1,j<len;j++)
+            for(j = i+1;j < len;j++)
             {
                 if(pPantallas[j].isEmpty == 1)
                 {
                     continue;
                 }
-                if(pPantallas[i].idPantalla>pPantallas[j].idPantalla)
+                if(pPantallas[i].idPantalla > pPantallas[j].idPantalla)
                 {
-                    buffer = pPantallas[i];
+                    auxiliar = pPantallas[i];
                     pPantallas[i] = pPantallas[j];
-                    pPantallas[j] = buffer;
+                    pPantallas[j] = auxiliar;
                 }
             }
         }
@@ -273,5 +274,25 @@ int pan_orderByID(Pantalla* pPantallas,int len)
     return 0;
 }
 
+int pan_getID(Pantalla * pPantallas, int len, char* msgE, int tries)
+{
+    char bufferID[20];
+    int auxiliarID;
+    int ret = -1;
 
+    if(pPantallas != NULL && len > 0)
+    {
+        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        {
+            auxiliarID = atoi(bufferID);
+            ret = auxiliarID;
+        }
+    }
+    return ret;
+}
 
+static int generateID(void)
+{
+    static int idPan = 0;
+    return idPan++;
+}
