@@ -20,8 +20,8 @@ int main()
     while(opcion!=11)
     {
         getIntInRange(&opcion,
-                      "\n1)Alta de pantalla\n2)Listar\n3)Modificar pantalla\n4)Baja de pantalla\n5)Alta publicidad\n"
-                      "6)Modificar publicidad\n7)Baja publicidad\n8)\n9)Mostrar publicidades\n"
+                      "\n1)Alta de pantalla\n2)Modificar pantalla\n3)Baja de pantalla\n4)Alta publicidad\n5)Modificar publicidad\n"
+                      "6)Baja publicidad\n7)\n8)Listar publicidades\n9)Listar Pantallas\n"
                       "10)Mostrar pantallas\n11a)Informar una cosa\n11b)Informar otra cosa\n12)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",
                       "NO!",
                       1,10,2);
@@ -33,7 +33,7 @@ int main()
                 posLibre = pan_searchFreeSpace(pantallas,CANT_PAN);
                 if(posLibre>=0)
                 {
-                    printf("\n\t~~~~Se encontró lugar~~~~\t\n");
+                    printf("\n\t~~~~Se encontro lugar~~~~\t\n");
                     if(pan_create(pantallas,CANT_PAN,posLibre,"Informacion invalida",TRIES) == 0)
                     {
                         pan_showArray(pantallas,CANT_PAN);
@@ -50,16 +50,7 @@ int main()
             {
                 if(flag == 1)
                 {
-                   pan_showArray(pantallas,CANT_PAN);
-                }
-                printf("\n~~~~No hay nada para mostrar~~~~\n");
-                break;
-            }
-            case 3:
-            {
-                if(flag == 1)
-                {
-                    if(pan_modifyByID(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+                    if(pan_modifyByID(pantallas,CANT_PAN,"Informacion invalida",TRIES) == 0)
                     {
                         printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
                     }
@@ -67,16 +58,37 @@ int main()
                 printf("\n~~~~No hay registros para modificar~~~~\n");
                 break;
             }
-            case 4:
-                {
-                    if(pan_bajaLogica(pantallas,CANT_PAN,"Informacion invalida",TRIES))
+            case 3:
+            {
+                if(pan_bajaLogica(pantallas,CANT_PAN,"Informacion invalida",TRIES))
                     {
                         printf("\n\t~~~~Se pudo dar de baja~~~~");
+                    }
+                break;
+            }
+            case 4:
+                {
+                    if(flag == 1)
+                    {
+                        pan_showArray(pantallas,CANT_PAN);
+                        if(pub_create(publicidades,pantallas,CANT_PUB,"Informacion invalida",TRIES) == 0)
+                        {
+                            printf("\n\t~~~~Se pudo dar de alta la publicidad~~~~");
+                        }
+                        else
+                        {
+                            printf("\n\t~~~~No se pudo dar de alta la publicidad~~~~");
+                        }
+                    }
+                    else
+                    {
+                        printf("\n~~~~No hay registros para modificar~~~~\n");
                     }
                     break;
                 }
             case 5:
                 {
+                    ///getCuit
                     break;
                 }
             case 6:
@@ -89,6 +101,14 @@ int main()
                 }
             case 8:
                 {
+                    if(flag == 1)
+                    {
+                        pub_printPublicidades(publicidades,pantallas,CANT_PAN,CANT_PUB);
+                    }
+                    else
+                    {
+                        printf("\n\t----No hay registros para mostrar----\t\n");
+                    }
                     break;
                 }
             case 9:
@@ -104,6 +124,3 @@ int main()
 
     return 0;
 }
-
-
-

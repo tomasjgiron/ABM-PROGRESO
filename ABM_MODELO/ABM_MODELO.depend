@@ -6,6 +6,8 @@
 	"arraynuevo.h"
 	"empleado.h"
 
+1556236361 h"
+
 1556235493 /home/alumno/Documentos/clase07/ABM_MODELO/arraynuevo.h
 
 1556228366 /home/alumno/Documentos/clase07/ABM_MODELO/empleado.h
@@ -25,6 +27,8 @@
 	"Pantallas.h"
 	"Publicidades.h"
 
+1556782909 des.h"
+
 1556233038 /home/alumno/Documentos/clase07/ABM_MODELO/Pantallas.h
 
 1556228366 /home/alumno/Documentos/clase07/ABM_MODELO/Publicidades.h
@@ -35,6 +39,8 @@
 	<string.h>
 	"arraynuevo.h"
 	"pantallas.h"
+
+1556235541 .h"
 
 1556235704 /home/alumno/Documentos/clase07/ABM_MODELO/pantallas.h
 
@@ -77,6 +83,52 @@
 	"Publicidades.h"
 
 1556782909 source:c:\users\tomas\desktop\abm-progreso-master\abm_modelo\publicidades.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556783417 source:/home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556783417 /home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/arraynuevo.h
+
+1556783417 /home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/empleado.h
+
+1556783417 source:/home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"empleado.h"
+
+1556841470 source:/home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556783417 /home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/Pantallas.h
+
+1556838569 /home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/Publicidades.h
+
+1556783417 source:/home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/Pantallas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"Pantallas.h"
+	"Publicidades.h"
+
+1556841661 source:/home/alumno/Documentos/ABM-PROGRESO-master/ABM_MODELO/Publicidades.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
