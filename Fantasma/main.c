@@ -1,8 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "utn.h"
-#include "fantasma.h"
+#include "arraynuevo.h"
 #include "autor.h"  //cambiar por nombre entidad
 
 
@@ -10,36 +9,36 @@
 
 int main()
 {
-    int opcion;
-    int contadorIdAutor=0;                   //cambiar
+    int opcion = 0;
+//    int contadorIdAutor=0;                   //cambiar
 
-    Fantasma arrayFantasma[QTY_TIPO];                   //cambiar
-    fantasma_Inicializar(arrayFantasma,QTY_TIPO);                   //cambiar
+//    Fantasma arrayFantasma[QTY_TIPO];                   //cambiar
+//    fantasma_Inicializar(arrayFantasma,QTY_TIPO);                   //cambiar
 
     do
     {
-        utn_getUnsignedInt("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Listar \n5) Ordenar \n6) Salir\n",                   //cambiar
-                      "\nError",1,sizeof(int),1,11,1,&opcion);
+//        utn_getUnsignedInt("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Listar \n5) Ordenar \n6) Salir\n",                   //cambiar
+//                      "\nError",1,sizeof(int),1,11,1,&opcion);
         switch(opcion)
         {
             case 1: //Alta
-                fantasma_alta(arrayFantasma,QTY_TIPO,&contadorIdfantasma);                   //cambiar
+//                fantasma_alta(arrayFantasma,QTY_TIPO,&contadorIdfantasma);                   //cambiar
                 break;
 
             case 2: //Modificar
-                fantasma_modificar(arrayFantasma,QTY_TIPO);                   //cambiar
+//                fantasma_modificar(arrayFantasma,QTY_TIPO);                   //cambiar
                 break;
 
             case 3: //Baja
-                fantasma_baja(arrayFantasma,QTY_TIPO);                   //cambiar
+//                fantasma_baja(arrayFantasma,QTY_TIPO);                   //cambiar
                 break;
 
             case 4://Listar
-                fantasma_listar(arrayFantasma,QTY_TIPO);                   //cambiar
+//                fantasma_listar(arrayFantasma,QTY_TIPO);                   //cambiar
                 break;
 
             case 5://Ordenar
-                fantasma_ordenarPorString(arrayFantasma,QTY_TIPO);                   //cambiar
+//                fantasma_ordenarPorString(arrayFantasma,QTY_TIPO);                   //cambiar
                 break;
 
             case 6://Salir

@@ -1,32 +1,38 @@
 #ifndef PRESTAMO_H_INCLUDED
 #define PRESTAMO_H_INCLUDED
 
-#define TEXT_SIZE 31
-
 typedef struct
 {
-    int idPrestamo;
-    int isEmpty;
-    //-----------------
-    char fechaPrestamo[TEXT_SIZE];
-    int idSocio;
+    int idPrestamo; /// se va autoincrementando
     int idLibro;
-
+    int idSocio;
+    int fechaPrestamos[12];
+    int isEmpty; /// lleno=0 ; vacio=1
 }Prestamo;
 
+int prestamo_menu(Prestamo* pPrestamos,int len,char* textMenu,char* msgE,int escape,int tries);
+
+int prestamo_initArray(Prestamo* pPrestamos, int len);
+
+int prestamo_addPrestamo(Prestamo* pPrestamos,int len, char* msgE,int tries);
+
+int prestamo_removePrestamo(Prestamo* pPrestamos, int len,char* msgE,int tries);
+
+int prestamo_printPrestamo(Prestamo* pPrestamos,int len);
+
+int prestamo_sortPrestamoSurnameSector(Prestamo* pPrestamos,int len);
+
+int prestamo_printTotalPromAboveSalary(Prestamo* pPrestamos, int len);
+
+int prestamo_modifyPrestamo(Prestamo* pPrestamos,int len,char* msgE,int escape,int tries);
+
+
+int prestamo_searchFreeSpace(Prestamo* pPrestamos, int len);
+
+int prestamo_findPosID(Prestamo* pPrestamos, int len,int idPres);
+
+int prestamo_getID(Prestamo* pPrestamos, int len, char* msgE, int tries);
+
+int prestamo_aboveSalary(Prestamo* pPrestamos, int len, float prom);
 
 #endif // PRESTAMO_H_INCLUDED
-
-int prestamo_Inicializar(Prestamo array[], int size);                                    //cambiar prestamo
-int prestamo_buscarEmpty(Prestamo array[], int size, int* posicion);                    //cambiar prestamo
-int prestamo_buscarID(Prestamo array[], int size, int valorBuscado, int* posicion);                    //cambiar prestamo
-int prestamo_buscarInt(Prestamo array[], int size, int valorBuscado, int* posicion);                    //cambiar prestamo
-int prestamo_buscarString(Prestamo array[], int size, char* valorBuscado, int* indice);                    //cambiar prestamo
-int prestamo_alta(Prestamo array[], int size, int* contadorID);                          //cambiar prestamo
-int prestamo_baja(Prestamo array[], int sizeArray);                                      //cambiar prestamo
-int prestamo_bajaValorRepetidoInt(Prestamo array[], int sizeArray, int valorBuscado);
-int prestamo_modificar(Prestamo array[], int sizeArray);                                //cambiar prestamo
-int prestamo_ordenarPorString(Prestamo array[],int size);                              //cambiar prestamo
-int prestamo_listar(Prestamo array[], int size);                      //cambiar prestamo
-
-

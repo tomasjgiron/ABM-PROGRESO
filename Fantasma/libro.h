@@ -1,31 +1,37 @@
 #ifndef LIBRO_H_INCLUDED
 #define LIBRO_H_INCLUDED
 
-#define TEXT_SIZE 51
-
 typedef struct
 {
-    int idLibro;
-    int isEmpty;
-    //-----------------
-    char titulo[TEXT_SIZE];
+    int idLibro; /// se va autoincrementando
+    char titulo[51];
     int idAutor;
-
+    int isEmpty; /// lleno=0 ; vacio=1
 }Libro;
 
+int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int tries);
+
+int libro_initArray(Libro* pLibros, int len);
+
+int libro_addLibro(Libro* pLibros,int len, char* msgE,int tries);
+
+int libro_removeLibro(Libro* pLibros, int len,char* msgE,int tries);
+
+int libro_printLibro(Libro* pLibros,int len);
+
+int libro_sortLibroSurnameSector(Libro* pLibros,int len);
+
+int libro_printTotalPromAboveSalary(Libro* pLibros, int len);
+
+int libro_modifyLibro(Libro* pLibros,int len,char* msgE,int escape,int tries);
+
+
+int libro_searchFreeSpace(Libro* pLibros, int len);
+
+int libro_findPosID(Libro* pLibros, int len,int idLib);
+
+int libro_getID(Libro* pLibros, int len, char* msgE, int tries);
+
+int libro_aboveSalary(Libro* pLibros, int len, float prom);
 
 #endif // LIBRO_H_INCLUDED
-
-int libro_Inicializar(Libro array[], int size);                                    //cambiar libro
-int libro_buscarEmpty(Libro array[], int size, int* posicion);                    //cambiar libro
-int libro_buscarID(Libro array[], int size, int valorBuscado, int* posicion);                    //cambiar libro
-int libro_buscarInt(Libro array[], int size, int valorBuscado, int* posicion);                    //cambiar libro
-int libro_buscarString(Libro array[], int size, char* valorBuscado, int* indice);                    //cambiar libro
-int libro_alta(Libro array[], int size, int* contadorID);                          //cambiar libro
-int libro_baja(Libro array[], int sizeArray);                                      //cambiar libro
-int libro_bajaValorRepetidoInt(Libro array[], int sizeArray, int valorBuscado);
-int libro_modificar(Libro array[], int sizeArray);                                //cambiar libro
-int libro_ordenarPorString(Libro array[],int size);                              //cambiar libro
-int libro_listar(Libro array[], int size);                      //cambiar libro
-
-

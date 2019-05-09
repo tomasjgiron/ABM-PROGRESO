@@ -1,29 +1,37 @@
 #ifndef AUTOR_H_INCLUDED
 #define AUTOR_H_INCLUDED
 
-#define TEXT_SIZE 31
-
 typedef struct
 {
-    int idAutor;
-    int isEmpty;
-    //-----------------
-    char nombre[TEXT_SIZE];
-    char apellido[TEXT_SIZE];
-
+    int idAutor; /// se va autoincrementando
+    char name[31];
+    char surname[31];
+    int isEmpty; /// lleno=0 ; vacio=1
 }Autor;
 
+int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int tries);
+
+int autor_initArray(Autor* pAutores, int len);
+
+int autor_addAutor(Autor* pAutores,int len, char* msgE,int tries);
+
+int autor_removeAutor(Autor* pAutores, int len,char* msgE,int tries);
+
+int autor_printAutor(Autor* pAutores,int len);
+
+int autor_sortAutorSurnameSector(Autor* pAutores,int len);
+
+int autor_printTotalPromAboveSalary(Autor* pAutores, int len);
+
+int autor_modifyAutor(Autor* pAutores,int len,char* msgE,int escape,int tries);
+
+
+int autor_searchFreeSpace(Autor* pAutores, int len);
+
+int autor_findPosID(Autor* pAutores, int len,int idAut);
+
+int autor_getID(Autor* pAutores, int len, char* msgE, int tries);
+
+int autor_aboveSalary(Autor* pAutores, int len, float prom);
 
 #endif // AUTOR_H_INCLUDED
-
-int autor_Inicializar(Autor array[], int size);                                    //cambiar autor
-int autor_buscarEmpty(Autor array[], int size, int* posicion);                    //cambiar autor
-int autor_buscarID(Autor array[], int size, int valorBuscado, int* posicion);                    //cambiar autor
-int autor_buscarInt(Autor array[], int size, int valorBuscado, int* posicion);                    //cambiar autor
-int autor_buscarString(Autor array[], int size, char* valorBuscado, int* indice);                    //cambiar autor
-int autor_alta(Autor array[], int size, int* contadorID);                          //cambiar autor
-int autor_baja(Autor array[], int sizeArray);                                      //cambiar autor
-int autor_bajaValorRepetidoInt(Autor array[], int sizeArray, int valorBuscado);
-int autor_modificar(Autor array[], int sizeArray);                                //cambiar autor
-int autor_ordenarPorString(Autor array[],int size);                              //cambiar autor
-int autor_listar(Autor array[], int size);                      //cambiar autor
