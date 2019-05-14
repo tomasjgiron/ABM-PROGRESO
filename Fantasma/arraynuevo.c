@@ -462,3 +462,168 @@ int isCuit (char* pStr)
     }
     return ret;
 }
+int isMail(char* pStr)
+{
+    int i;
+    int contadorArroba = 0;
+    int ret = 0;
+
+    while(pStr[i] != '\0')
+    {
+        if((pStr[i] != '.') && (pStr[i] != '-') && (pStr[i] != '_') &&
+        (pStr[i] < '0' || pStr[i] > '9') && (pStr[i] < 'a' || pStr[i] > 'z') && (pStr[i] < 'A' || pStr[i] > 'Z'))
+        {
+            return ret;
+        }
+        if(pStr[0] == '.' || pStr[i-1] == '.')
+        {
+            return ret;
+        }
+        if(pStr[i] == '@')
+        {
+            contadorArroba++;
+        }
+        i++;
+    }
+    if(contadorArroba == 1)
+    {
+        ret = 1;
+    }
+    return ret;
+}
+
+int getMail (char* pStr, char* msg, char* msgE,int reintentos)
+{
+    char bufferStr[20];
+    int ret = -1;
+    while(ret == -1 && reintentos > 0)
+    {
+        if(!getString(bufferStr,msg,msgE)&&(pStr!=NULL)&&(isMail(bufferStr)))
+        {
+            strncpy(pStr,bufferStr,20);
+            ret = 0;
+        }
+        else
+        {
+            printf("%s",msgE);
+            reintentos--;
+        }
+    }
+    return ret;
+}
+
+int isFecha(int dia,int mes,int anio)
+{
+  int ret = 0;
+
+        if((anio < 1900 || anio > 2030) &&
+            (mes < 1 || mes > 12) &&
+            (dia < 1 || dia > 31))
+        {
+            ret = 0;
+        }
+        switch(mes)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    {
+                        if(dia < 1 || dia > 31)
+                        {
+                            ret = 1;
+                        }
+                        break;
+                    }
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    {
+                        if(dia < 1 || dia > 30)
+                        {
+                            ret = 1;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if(dia < 1 || dia > 29)
+                        {
+                            ret = 1;
+                        }
+                        break;
+                    }
+            }
+    return ret;
+}
+
+int getFecha (int* dia,int* mes,int* anio,char* msgE,int reintentos)
+{
+    int auxiliarDia;
+    int auxiliarMes;
+    int auxiliarAnio;
+    int ret = -1;
+
+    if(dia != NULL && mes != NULL && anio != NULL && reintentos > 0)
+    {
+        while(ret == -1)
+        {
+            if((getInt(&auxiliarDia,"Ingrese dia: ",msgE)==0)&&
+               (getInt(&auxiliarMes,"Ingrese mes: ",msgE)==0)&&
+               (getInt(&auxiliarAnio,"Ingrese anio: ",msgE)==0)&&
+               (isFecha(auxiliarDia,auxiliarMes,auxiliarAnio)))
+               {
+                   *dia = auxiliarDia;
+                   *mes = auxiliarMes;
+                   *anio = auxiliarAnio;
+                   ret = 0;
+               }
+            else
+            {
+                printf(msgE);
+                ret = -1;
+                reintentos--;
+            }
+        }
+    }
+    return ret;
+}
+
+int isSexo (char* pStr)
+{
+    int ret = 0;
+
+    if(strlen(pStr) == 1)
+        {
+            if((strcmp(pStr,"f") == 0) || (strcmp(pStr,"m") == 0) ||
+               (strcmp(pStr,"F") == 0) || (strcmp(pStr,"M") == 0))
+                {
+                    ret = 1;
+                }
+        }
+    return ret;
+}
+
+int getSexo (char* pStr, char* msg, char* msgE,int reintentos) ///revisar
+{
+    char bufferStr[10];
+    int ret = -1;
+    while(ret==-1 && reintentos>0)
+    {
+        if(!getString(bufferStr,msg,msgE)&&(pStr!=NULL)&&(isSexo(bufferStr)))
+        {
+            strncpy(pStr,bufferStr,sizeof(bufferStr));
+            ret=0;
+        }
+        else
+        {
+            printf("%s",msgE);
+            reintentos--;
+        }
+    }
+    return ret;
+}

@@ -162,44 +162,67 @@
 
 1557357551 /home/alumno/Documentos/Fantasma/prestamo.h
 
-1557377464 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\arraynuevo.c
+1557863105 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\arraynuevo.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"arraynuevo.h"
 
-1556236361 c:\users\tomas\desktop\abm-progreso-master\fantasma\arraynuevo.h
+1557730654 c:\users\tomas\desktop\abm-progreso-master\fantasma\arraynuevo.h
 
-1557428367 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.c
+1557865202 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"arraynuevo.h"
 	"autor.h"
 
-1557426826 c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.h
+1557721842 c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.h
 
-1557428335 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.c
+1557865226 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"arraynuevo.h"
 	"libro.h"
+	"autor.h"
 
-1557426862 c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.h
+1557722860 c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.h
+	"autor.h"
 
-1557424711 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.c
+1557865185 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"socio.h"
+	"autor.h"
+	"libro.h"
 
-1557363611 c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.h
+1557731614 c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.h
+	"autor.h"
+	"libro.h"
 
-1557424715 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.c
+1557865297 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.c
+	<stdio.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"prestamo.h"
+	"arraynuevo.h"
+	"socio.h"
+	"libro.h"
 
-1557363611 c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.h
+1557865045 c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.h
+	"socio.h"
+	"libro.h"
 
-1557426566 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\main.c
+1557733305 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	"arraynuevo.h"
 	"autor.h"
+	"libro.h"
+	"socio.h"
 

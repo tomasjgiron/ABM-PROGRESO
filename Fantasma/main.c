@@ -2,51 +2,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "arraynuevo.h"
-#include "autor.h"  //cambiar por nombre entidad
+#include "autor.h"
+#include "libro.h"
+#include "socio.h"
 
-
-#define QTY_TIPO 3
+#define TRIES 3
+#define LEN_LIBRO 3
+#define LEN_AUTOR 3
 
 int main()
 {
+    Autor autores[LEN_AUTOR];
+    Libro libros[LEN_LIBRO];
+
     int opcion = 0;
-//    int contadorIdAutor=0;                   //cambiar
+    int escape = 5;
+    int flagAutor = -1;
+    int flagLibro = -1;
+    int flagSocio = -1;
 
-//    Fantasma arrayFantasma[QTY_TIPO];                   //cambiar
-//    fantasma_Inicializar(arrayFantasma,QTY_TIPO);                   //cambiar
-
-    do
+    while(opcion != escape)
     {
-//        utn_getUnsignedInt("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Listar \n5) Ordenar \n6) Salir\n",                   //cambiar
-//                      "\nError",1,sizeof(int),1,11,1,&opcion);
+        printf("\n1.Autores\n2.Libros\n3.Socios\n4.Prestamos\n5.Salir\n");
+        getIntInRange(&opcion,"\nIngrese opcion: ",
+                      "Informacion invalida",1,escape,TRIES);
         switch(opcion)
         {
-            case 1: //Alta
-//                fantasma_alta(arrayFantasma,QTY_TIPO,&contadorIdfantasma);                   //cambiar
+        case 1:
+            {
+                if(autor_menu(autores,LEN_AUTOR,
+                    "\n1.Alta\n2.Modificar\n3.Baja logica\n4.Listar\n5.Salir\n","Informacion invalida",escape,TRIES)== 0)
+                {
+                    flagAutor = 1;
+                }
+                else
+                {
+                    printf("\n\t~~~~No se realizo el alta~~~~\t\n");
+                }
                 break;
+            }
+        case 2:
+            {
+                if(flagAutor == 1)
+                {
+                    if(libro_menu(libros,LEN_LIBRO,
+                                  autores,LEN_AUTOR,
+                                  "\n1.Alta\n2.Modificar\n3.Baja logica\n4.Listar\n5.Salir\n",
+                                  "Informacion invalida",escape,TRIES)== 0)
+                    {
+                        ///usar el flag de libro y seguir con los demas case
+                        ///al momento de hacer socio se debera cambiar su respectiva flag a 1, al igual que las anteriores
+                    }
+                }
+            }
 
-            case 2: //Modificar
-//                fantasma_modificar(arrayFantasma,QTY_TIPO);                   //cambiar
-                break;
-
-            case 3: //Baja
-//                fantasma_baja(arrayFantasma,QTY_TIPO);                   //cambiar
-                break;
-
-            case 4://Listar
-//                fantasma_listar(arrayFantasma,QTY_TIPO);                   //cambiar
-                break;
-
-            case 5://Ordenar
-//                fantasma_ordenarPorString(arrayFantasma,QTY_TIPO);                   //cambiar
-                break;
-
-            case 6://Salir
-                break;
-            default:
-                printf("\nOpcion no valida");
         }
     }
-    while(opcion!=6);
+
     return 0;
 }

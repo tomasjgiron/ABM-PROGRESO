@@ -79,25 +79,17 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
                     printf("\n~~~~No hay registros para dar de baja~~~~\n");
                     break;
                 }
-/*                case 4:
+                case 4:
                     {
                         if(flag == 1)
                         {
-                            if(autor_sortAutorSurnameSector(pAutores,len) == 0);
-                            {
-                                autor_printAutor(pAutores,len);
-                            }
-                            if(autor_printTotalPromAboveSalary(pAutores,len) == 0)
-                            {
-                                autor_printTotalPromAboveSalary(pAutores,len);
-                            }
-
+                           autor_sortAutorSurnameName(pAutores,len,1); // 1 ascendende y 0 descendente
+                           autor_printAutor(pAutores,len);
                         }
-                        printf("\n~~~~No hay registros para mostrar~~~~\n");
-                        break;
-                    }*/
-                case 5:
-                    {
+                        else
+                        {
+                            printf("\n~~~~No hay registros para mostrar~~~~\n");
+                        }
                         break;
                     }
             }
@@ -123,20 +115,16 @@ int autor_initArray(Autor* pAutores, int len)
 
 int autor_addAutor(Autor* pAutores,int len, char* msgE,int tries)
 {
-    int auxiliarIDAutor;
-    int posOfID;
     int indexFree;
-    char bufferName[51];
-    char bufferSurname[51];
+    char bufferName[31];
+    char bufferSurname[31];
     int ret = -1;
 
     if(pAutores != NULL && len > 0) ///SIEMPRE VALIDAR AL USAR ARRAYS
     {
-        auxiliarIDAutor = autor_getID(pAutores,len,msgE,tries);
         indexFree = autor_searchFreeSpace(pAutores,len);
-        posOfID = autor_findPosID(pAutores,len,auxiliarIDAutor);
 
-        if((auxiliarIDAutor >= 1) && (posOfID != -1))
+        if(indexFree >= 0)
         {
             if((getStringLetras(bufferName,"Ingrese nombre: ",msgE,tries) == 0) &&
             (getStringLetras(bufferSurname,"Ingrese apellido: ",msgE,tries) == 0))
@@ -177,7 +165,7 @@ int autor_searchFreeSpace(Autor* pAutores, int len)
     return ret;
 }
 
-int autor_findPosID(Autor* pAutores, int len,int idEmp)
+int autor_findPosID(Autor* pAutores, int len,int idAut)
 {
     int i;
     int ret=-1;
@@ -186,7 +174,7 @@ int autor_findPosID(Autor* pAutores, int len,int idEmp)
     {
       for(i = 0;i < len;i++)
         {
-            if(pAutores[i].idAutor == idEmp)
+            if(pAutores[i].idAutor == idAut)
             {
                 ret = i;
                 break;
@@ -223,13 +211,13 @@ int autor_removeAutor(Autor* pAutores, int len,char* msgE,int tries)
     return ret;
 }
 
-int autor_getID(Autor * pPublicidad, int len, char* msgE, int tries)
+int autor_getID(Autor* pAutores, int len, char* msgE, int tries)
 {
     char bufferID[20];
     int auxiliarID;
     int ret = -1;
 
-    if(pPublicidad != NULL && len > 0)
+    if(pAutores != NULL && len > 0)
     {
         if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
         {
@@ -265,11 +253,12 @@ int autor_printAutor(Autor* pAutores,int len)
     return 0;
 }
 
-int autor_sortAutorSurnameSector(Autor* pAutores,int len)
+int autor_sortAutorSurnameName(Autor* pAutores,int len,int order)
 {
     int i;
     int j;
     Autor buffer;
+    int ret = -1;
 
     if(pAutores != NULL && len > 0)
     {
@@ -277,67 +266,35 @@ int autor_sortAutorSurnameSector(Autor* pAutores,int len)
         {
             for(j=i+1;j<len;j++)
             {
-                if(pAutores[i].surname > pAutores[j].surname)
+                if(order == 1 && (strcmp(pAutores[j].surname,pAutores[i].surname) < 0))
                 {
                     buffer = pAutores[i];
                     pAutores[i] = pAutores[j];
                     pAutores[j] = buffer;
+                    ret = 0;
+                }
+                else if(order == 0 && (strcmp(pAutores[j].surname,pAutores[i].surname) > 0))
+                {
+                    buffer = pAutores[i];
+                    pAutores[i] = pAutores[j];
+                    pAutores[j] = buffer;
+                    ret = 0;
+                }
+                else if(strcmp(pAutores[j].surname,pAutores[i].surname) == 0)
+                {
+                    if(pAutores[i].name > pAutores[j].name)
+                    {
+                        buffer = pAutores[i];
+                        pAutores[i] = pAutores[j];
+                        pAutores[j] = buffer;
+                        ret = 0;
+                    }
                 }
             }
         }
     }
-    return 0;
-}
-
-/*int autor_printTotalPromAboveSalary(Autor* pAutores, int len)
-{
-    int i;
-    float acumuladorTotal = 0;
-    float prom;
-    int contador = 0;
-    int auxiliarAboveSalary;
-
-    if(pAutores != NULL && len > 0)
-    {
-        for(i=0;i<len;i++)
-        {
-            if(pAutores[i].isEmpty == 0)
-            {
-            acumuladorTotal += pAutores[i].salary;
-            contador += pAutores[i].salary;
-            }
-        }
-        prom = acumuladorTotal/contador;
-
-        auxiliarAboveSalary = autor_aboveSalary(pAutores,len,prom);
-
-        printf("El salario total es: %.2f\n",acumuladorTotal);
-        printf("El promedio es: %.2f\n",prom);
-        printf("La cantidad de empleados con salario por encima del promedio es: %d",auxiliarAboveSalary);
-    }
-    return 0;
-}
-
-int autor_aboveSalary(Autor* pAutores, int len, float prom)
-{
-    int contador = 0;
-    int i;
-    int ret = -1;
-
-    if(pAutores != NULL && len > 0)
-    {
-
-        for(i=0;i<len;i++)
-        {
-            if(pAutores[i].salary > prom)
-            {
-                contador++;
-                ret = contador;
-            }
-        }
-    }
     return ret;
-}*/
+}
 
 int autor_modifyAutor(Autor* pAutores,int len,char* msgE,int escape,int tries)
 {

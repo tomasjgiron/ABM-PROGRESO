@@ -3,19 +3,20 @@
 #include <string.h>
 #include "arraynuevo.h"
 #include "libro.h"
+#include "autor.h"
 
 static int generateID(void);
 
-int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int tries)
+int libro_menu(Libro* pLibros,int lenLib,Autor* pAutores,int lenAut,char* textMenu,char* msgE,int escape,int tries)
 {
 
     int opcion = 0;
     int posLibre;
     int flag = 0;
 
-    if(pLibros != NULL && len > 0)
+    if(pLibros != NULL && lenLib > 0)
     {
-        libro_initArray(pLibros,len);
+        libro_initArray(pLibros,lenLib);
         while(opcion!=5)
         {
             printf(textMenu);
@@ -27,11 +28,11 @@ int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int t
             {
                 case 1:
                 {
-                    posLibre = libro_searchFreeSpace(pLibros,len);
+                    posLibre = libro_searchFreeSpace(pLibros,lenLib);
                     if(posLibre >= 0)
                     {
                         printf("\n\t~~~~Se encontro lugar~~~~\t\n");
-                        if(libro_addLibro(pLibros,len,"Informacion invalida",tries) == 0)
+                        if(libro_addLibro(pLibros,lenLib,pAutores,lenAut,"Informacion invalida",tries) == 0)
                         {
                             flag = 1;
                             printf("\n\t~~~~Se realizo el alta de manera correcta~~~~\t\n");
@@ -51,7 +52,7 @@ int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int t
                 {
                     if(flag == 1)
                     {
-                        if(libro_modifyLibro(pLibros,len,"Informacion invalida",5,tries) == 0)
+                        if(libro_modifyLibro(pLibros,lenLib,"Informacion invalida",5,tries) == 0)
                         {
                             printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
                         }
@@ -67,7 +68,7 @@ int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int t
                 {
                     if(flag == 1)
                     {
-                        if(libro_removeLibro(pLibros,len,"Informacion invalida",tries) == 0)
+                        if(libro_removeLibro(pLibros,lenLib,"Informacion invalida",tries) == 0)
                         {
                             printf("\n\t~~~~Se pudo dar de baja~~~~");
                         }
@@ -79,25 +80,17 @@ int libro_menu(Libro* pLibros,int len,char* textMenu,char* msgE,int escape,int t
                     printf("\n~~~~No hay registros para dar de baja~~~~\n");
                     break;
                 }
-/*                case 4:
+                    case 4:
                     {
                         if(flag == 1)
                         {
-                            if(libro_sortLibroSurnameSector(pLibros,len) == 0);
-                            {
-                                libro_printLibro(pLibros,len);
-                            }
-                            if(libro_printTotalPromAboveSalary(pLibros,len) == 0)
-                            {
-                                libro_printTotalPromAboveSalary(pLibros,len);
-                            }
-
+                            libro_sortLibroTitulo(pLibros,lenLib);
+                            libro_printLibro(pLibros,pAutores,lenAut,lenLib);
                         }
-                        printf("\n~~~~No hay registros para mostrar~~~~\n");
-                        break;
-                    }*/
-                case 5:
-                    {
+                        else
+                        {
+                            printf("\n~~~~No hay registros para mostrar~~~~\n");
+                        }
                         break;
                     }
             }
@@ -121,27 +114,28 @@ int libro_initArray(Libro* pLibros, int len)
     return 0;
 }
 
-int libro_addLibro(Libro* pLibros,int len, char* msgE,int tries) ///similar al pub_create con dos arrays
+int libro_addLibro(Libro* pLibros,int lenLib,Autor* pAutores,int lenAut, char* msgE,int tries) ///similar al pub_create con dos arrays
 {
-    int auxiliarIDLibro;
+    int auxiliarIDAutor;
     int posOfID;
     int indexFree;
     char bufferTitulo[31];
     int ret = -1;
 
-    if(pLibros != NULL && len > 0) ///SIEMPRE VALIDAR AL USAR ARRAYS
+    if(pLibros != NULL && pAutores != NULL && lenAut > 0 && lenLib > 0) ///SIEMPRE VALIDAR AL USAR ARRAYS
     {
-        auxiliarIDLibro = libro_getID(pLibros,len,msgE,tries);
-        indexFree = libro_searchFreeSpace(pLibros,len);
-        posOfID = libro_findPosID(pLibros,len,auxiliarIDLibro);
+        indexFree = libro_searchFreeSpace(pLibros,lenLib);
+        auxiliarIDAutor = autor_getID(pAutores,lenAut,msgE,tries);
+        posOfID = autor_findPosID(pAutores,lenAut,auxiliarIDAutor);
 
-        if((auxiliarIDLibro >= 1) && (posOfID != -1))
+        if((auxiliarIDAutor >= 0) && (posOfID != -1))
         {
             if(getStringLetras(bufferTitulo,"Ingrese titulo: ",msgE,tries) == 0)
             {
                 strncpy(pLibros[indexFree].titulo,bufferTitulo,sizeof(bufferTitulo));
                 pLibros[indexFree].isEmpty = 0;
                 pLibros[indexFree].idLibro = generateID();
+                pLibros[posOfID].idAutor = auxiliarIDAutor;
                 ret = 0;
             }
         }
@@ -173,7 +167,7 @@ int libro_searchFreeSpace(Libro* pLibros, int len)
     return ret;
 }
 
-int libro_findPosID(Libro* pLibros, int len,int idEmp)
+int libro_findPosID(Libro* pLibros, int len,int idLib)
 {
     int i;
     int ret=-1;
@@ -182,7 +176,7 @@ int libro_findPosID(Libro* pLibros, int len,int idEmp)
     {
       for(i = 0;i < len;i++)
         {
-            if(pLibros[i].idLibro == idEmp)
+            if(pLibros[i].idLibro == idLib)
             {
                 ret = i;
                 break;
@@ -219,13 +213,13 @@ int libro_removeLibro(Libro* pLibros, int len,char* msgE,int tries)
     return ret;
 }
 
-int libro_getID(Libro * pPublicidad, int len, char* msgE, int tries)
+int libro_getID(Libro* pLibros, int len, char* msgE, int tries)
 {
     char bufferID[20];
     int auxiliarID;
     int ret = -1;
 
-    if(pPublicidad != NULL && len > 0)
+    if(pLibros != NULL && len > 0)
     {
         if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
         {
@@ -236,20 +230,25 @@ int libro_getID(Libro * pPublicidad, int len, char* msgE, int tries)
     return ret;
 }
 
-int libro_printLibro(Libro* pLibros,int len)
+int libro_printLibro(Libro* pLibros,Autor* pAutores,int lenAut,int lenLib)
 {
     int i;
     int flag = -1;
+    int posAutor;
 
-    if(pLibros != NULL && len > 0)
+    if(pLibros != NULL && pAutores != NULL && lenAut > 0 && lenLib > 0)
     {
-        for(i=0;i<len;i++)
+        for(i=0;i<lenLib;i++)
         {
             if(pLibros[i].isEmpty == 0)
             {
-                printf("ID Libro: %d\nTitulo: %s\n--------"
-                ,pLibros[i].idLibro,pLibros[i].titulo);
-                flag = 0;
+                posAutor = autor_findPosID(pAutores,lenAut,pLibros[i].idAutor);
+                if(posAutor >= 0)
+                {
+                    printf("ID Libro: %d\nTitulo: %s\nID Autor: %d\n--------"
+                    ,pLibros[i].idLibro,pLibros[i].titulo,pAutores[posAutor].idAutor);
+                    flag = 0;
+                }
             }
         }
     if(flag)
@@ -260,7 +259,7 @@ int libro_printLibro(Libro* pLibros,int len)
     return 0;
 }
 
-/*int libro_sortLibroSurnameSector(Libro* pLibros,int len)
+int libro_sortLibroTitulo(Libro* pLibros,int len)
 {
     int i;
     int j;
@@ -272,7 +271,7 @@ int libro_printLibro(Libro* pLibros,int len)
         {
             for(j=i+1;j<len;j++)
             {
-                if((pLibros[i].surname > pLibros[j].surname) &&(pLibros[i].sector > pLibros[j].sector))
+                if(pLibros[i].titulo > pLibros[j].titulo)
                 {
                     buffer = pLibros[i];
                     pLibros[i] = pLibros[j];
@@ -284,56 +283,6 @@ int libro_printLibro(Libro* pLibros,int len)
     return 0;
 }
 
-int libro_printTotalPromAboveSalary(Libro* pLibros, int len)
-{
-    int i;
-    float acumuladorTotal = 0;
-    float prom;
-    int contador = 0;
-    int auxiliarAboveSalary;
-
-    if(pLibros != NULL && len > 0)
-    {
-        for(i=0;i<len;i++)
-        {
-            if(pLibros[i].isEmpty == 0)
-            {
-            acumuladorTotal += pLibros[i].salary;
-            contador += pLibros[i].salary;
-            }
-        }
-        prom = acumuladorTotal/contador;
-
-        auxiliarAboveSalary = libro_aboveSalary(pLibros,len,prom);
-
-        printf("El salario total es: %.2f\n",acumuladorTotal);
-        printf("El promedio es: %.2f\n",prom);
-        printf("La cantidad de empleados con salario por encima del promedio es: %d",auxiliarAboveSalary);
-    }
-    return 0;
-}
-
-int libro_aboveSalary(Libro* pLibros, int len, float prom)
-{
-    int contador = 0;
-    int i;
-    int ret = -1;
-
-    if(pLibros != NULL && len > 0)
-    {
-
-        for(i=0;i<len;i++)
-        {
-            if(pLibros[i].salary > prom)
-            {
-                contador++;
-                ret = contador;
-            }
-        }
-    }
-    return ret;
-}*/
-
 int libro_modifyLibro(Libro* pLibros,int len,char* msgE,int escape,int tries)
 {
     char bufferTitulo[31];
@@ -343,7 +292,8 @@ int libro_modifyLibro(Libro* pLibros,int len,char* msgE,int escape,int tries)
     int opcion = 0;
 
 
-    if(pLibros != NULL && len > 0)
+
+    if(pLibros != NULL && len> 0)
     {
        auxiliarID = libro_getID(pLibros,len,msgE,tries);
        if(auxiliarID >= 1)

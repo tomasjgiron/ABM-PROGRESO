@@ -19,7 +19,7 @@ int autor_removeAutor(Autor* pAutores, int len,char* msgE,int tries);
 
 int autor_printAutor(Autor* pAutores,int len);
 
-int autor_sortAutorSurnameSector(Autor* pAutores,int len);
+int autor_sortAutorSurnameName(Autor* pAutores,int len,int order);
 
 int autor_printTotalPromAboveSalary(Autor* pAutores, int len);
 
