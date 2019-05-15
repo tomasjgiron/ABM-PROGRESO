@@ -52,7 +52,7 @@ int libro_menu(Libro* pLibros,int lenLib,Autor* pAutores,int lenAut,char* textMe
                 {
                     if(flag == 1)
                     {
-                        if(libro_modifyLibro(pLibros,lenLib,"Informacion invalida",5,tries) == 0)
+                        if(libro_modifyLibro(pLibros,lenLib,"Informacion invalida",2,tries) == 0)
                         {
                             printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
                         }
@@ -221,7 +221,7 @@ int libro_getID(Libro* pLibros, int len, char* msgE, int tries)
 
     if(pLibros != NULL && len > 0)
     {
-        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        if(getStringNumerosInt(bufferID,"\nIngrese ID Libro: ",msgE,tries) == 0)
         {
             auxiliarID = atoi(bufferID);
             ret = auxiliarID;
@@ -245,7 +245,7 @@ int libro_printLibro(Libro* pLibros,Autor* pAutores,int lenAut,int lenLib)
                 posAutor = autor_findPosID(pAutores,lenAut,pLibros[i].idAutor);
                 if(posAutor >= 0)
                 {
-                    printf("ID Libro: %d\nTitulo: %s\nID Autor: %d\n--------"
+                    printf("\nID Libro: %d\nTitulo: %s\nID Autor: %d\n--------"
                     ,pLibros[i].idLibro,pLibros[i].titulo,pAutores[posAutor].idAutor);
                     flag = 0;
                 }
@@ -296,13 +296,28 @@ int libro_modifyLibro(Libro* pLibros,int len,char* msgE,int escape,int tries)
     if(pLibros != NULL && len> 0)
     {
        auxiliarID = libro_getID(pLibros,len,msgE,tries);
-       if(auxiliarID >= 1)
+       if(auxiliarID >= 0)
        {
             posID = libro_findPosID(pLibros,len,auxiliarID);
             if(posID != -1)
             {
-                pLibros[posID].isEmpty = 1;
-                ret = 0;
+                do
+                {
+                    getIntInRange(&opcion,"\n1)Ingrese nuevo titulo\n2)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n"
+                          ,msgE,1,escape,tries);
+                    switch(opcion)
+                    {
+                        case 1:
+                        {
+                            if(getStringLetras(bufferTitulo,"\nIngrese titulo: ",msgE,tries) == 0)
+                            {
+                                strncpy(pLibros[posID].titulo,bufferTitulo,sizeof(bufferTitulo));
+                                ret = 0;
+                            }
+                            break;
+                        }
+                    }
+                }while(opcion != escape);
             }
             else
             {
@@ -310,27 +325,7 @@ int libro_modifyLibro(Libro* pLibros,int len,char* msgE,int escape,int tries)
             }
 
         }
-        do
-        {
-            getIntInRange(&opcion,"\n1)Ingrese nuevo titulo\n2)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n"
-                          ,msgE,1,escape,tries);
-            switch(opcion)
-            {
-                case 1:
-                {
-                    if(getStringLetras(bufferTitulo,"\nIngrese titulo: ",msgE,tries) == 0)
-                       {
-                           strncpy(pLibros[posID].titulo,bufferTitulo,sizeof(bufferTitulo));
-                           ret = 0;
-                       }
-                       break;
-                }
-                default:
-                {
-                    ret = -1;
-                }
-            }
-        }while(ret == -1 || opcion != escape);
+
     }
     return ret;
 }

@@ -16,7 +16,7 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
     if(pAutores != NULL && len > 0)
     {
         autor_initArray(pAutores,len);
-        while(opcion!=5)
+        while(opcion!=escape)
         {
             printf(textMenu);
 
@@ -35,6 +35,7 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
                         {
                             flag = 1;
                             printf("\n\t~~~~Se realizo el alta de manera correcta~~~~\t\n");
+                            autor_printAutor(pAutores,len);
                         }
                         else
                         {
@@ -51,7 +52,8 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
                 {
                     if(flag == 1)
                     {
-                        if(autor_modifyAutor(pAutores,len,"Informacion invalida",5,tries) == 0)
+                        autor_printAutor(pAutores,len);
+                        if(autor_modifyAutor(pAutores,len,"Informacion invalida",3,tries) == 0)
                         {
                             printf("\n\t~~~~Se pudo modificar el listado~~~~\t\n");
                         }
@@ -60,7 +62,10 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
                             printf("\n\t~~~~No se pudo modificar el listado~~~~\t\n");
                         }
                     }
-                    printf("\n~~~~No hay registros para modificar~~~~\n");
+                    else
+                    {
+                        printf("\n~~~~No hay registros para modificar~~~~\n");
+                    }
                     break;
                 }
                 case 3:
@@ -76,7 +81,10 @@ int autor_menu(Autor* pAutores,int len,char* textMenu,char* msgE,int escape,int 
                             printf("\n\t~~~~No se logro dar de baja~~~~\t\n");
                         }
                     }
-                    printf("\n~~~~No hay registros para dar de baja~~~~\n");
+                    else
+                    {
+                        printf("\n~~~~No hay registros para dar de baja~~~~\n");
+                    }
                     break;
                 }
                 case 4:
@@ -193,7 +201,7 @@ int autor_removeAutor(Autor* pAutores, int len,char* msgE,int tries)
     if(pAutores != NULL && len > 0)
     {
        auxiliarID = autor_getID(pAutores,len,msgE,tries);
-       if(auxiliarID >= 1)
+       if(auxiliarID >= 0)
        {
             posID = autor_findPosID(pAutores,len,auxiliarID);
             if(posID != -1)
@@ -219,7 +227,7 @@ int autor_getID(Autor* pAutores, int len, char* msgE, int tries)
 
     if(pAutores != NULL && len > 0)
     {
-        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        if(getStringNumerosInt(bufferID,"\nIngrese ID Autor: ",msgE,tries) == 0)
         {
             auxiliarID = atoi(bufferID);
             ret = auxiliarID;
@@ -239,7 +247,7 @@ int autor_printAutor(Autor* pAutores,int len)
         {
             if(pAutores[i].isEmpty == 0)
             {
-                printf("ID Autor: %d\nNombre: %s\nApellido: %s\n--------"
+                printf("\nID Autor: %d\nNombre: %s\nApellido: %s\n--------"
                 ,pAutores[i].idAutor,pAutores[i].name,
                 pAutores[i].surname);
                 flag = 0;
@@ -309,49 +317,47 @@ int autor_modifyAutor(Autor* pAutores,int len,char* msgE,int escape,int tries)
     if(pAutores != NULL && len > 0)
     {
        auxiliarID = autor_getID(pAutores,len,msgE,tries);
-       if(auxiliarID >= 1)
+       if(auxiliarID >= 0)
        {
             posID = autor_findPosID(pAutores,len,auxiliarID);
             if(posID != -1)
             {
-                pAutores[posID].isEmpty = 1;
-                ret = 0;
+                do
+                {
+                    getIntInRange(&opcion,"\n1)Ingrese nuevo nombre"
+                          "\n2)Ingrese nuevo apellido"
+                          "\n3)Salir\n~~~~~~~~~~~~~~~~~~~~~~\n",msgE,1,escape,tries);
+
+                    switch(opcion)
+                    {
+                        case 1:
+                        {
+                            if(getStringLetras(bufferName,"\nIngrese nombre: ",msgE,tries) == 0)
+                            {
+                                strncpy(pAutores[posID].name,bufferName,sizeof(bufferName));
+                                ret = 0;
+                            }
+                            break;
+                        }
+                        case 2:
+                        {
+                            if((getStringLetras(bufferSurname,"\nIngrese apellido: ",msgE,tries) == 0))
+                            {
+                                strncpy(pAutores[posID].surname,bufferSurname,sizeof(bufferSurname));
+                                ret = 0;
+                            }
+                            break;
+                        }
+                    }
+                }while(opcion != escape);
             }
             else
             {
                 printf("\n\tID inexistente\t\n");
             }
 
+
         }
-        do
-        {
-            getIntInRange(&opcion,"\n1)Ingrese nuevo nombre\n2)Ingrese nuevo apellido\n3)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",msgE,1,escape,tries);
-            switch(opcion)
-            {
-                case 1:
-                {
-                    if(getStringLetras(bufferName,"\nIngrese nombre: ",msgE,tries) == 0)
-                       {
-                           strncpy(pAutores[posID].name,bufferName,sizeof(bufferName));
-                           ret = 0;
-                       }
-                       break;
-                }
-                case 2:
-                {
-                   if((getStringLetras(bufferSurname,"\nIngrese apellido: ",msgE,tries) == 0))
-                   {
-                       strncpy(pAutores[posID].surname,bufferSurname,sizeof(bufferSurname));
-                       ret = 0;
-                   }
-                   break;
-                }
-                default:
-                {
-                    ret = -1;
-                }
-            }
-        }while(ret == -1 || opcion != escape);
     }
     return ret;
 }

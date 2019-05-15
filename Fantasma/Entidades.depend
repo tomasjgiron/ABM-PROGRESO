@@ -170,7 +170,7 @@
 
 1557730654 c:\users\tomas\desktop\abm-progreso-master\fantasma\arraynuevo.h
 
-1557865202 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.c
+1557892999 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -179,7 +179,7 @@
 
 1557721842 c:\users\tomas\desktop\abm-progreso-master\fantasma\autor.h
 
-1557865226 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.c
+1557893411 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -190,7 +190,7 @@
 1557722860 c:\users\tomas\desktop\abm-progreso-master\fantasma\libro.h
 	"autor.h"
 
-1557865185 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.c
+1557893016 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\socio.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -203,7 +203,7 @@
 	"autor.h"
 	"libro.h"
 
-1557865297 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.c
+1557893030 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\prestamo.c
 	<stdio.h>
 	<string.h>
 	<stdio.h>
@@ -217,7 +217,7 @@
 	"socio.h"
 	"libro.h"
 
-1557733305 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\main.c
+1557893354 source:c:\users\tomas\desktop\abm-progreso-master\fantasma\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
@@ -225,4 +225,5 @@
 	"autor.h"
 	"libro.h"
 	"socio.h"
+	"prestamo.h"
 

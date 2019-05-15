@@ -261,7 +261,7 @@ int socio_getID(Socio * pSocios, int len, char* msgE, int tries)
 
     if(pSocios != NULL && len > 0)
     {
-        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        if(getStringNumerosInt(bufferID,"\nIngrese ID Socio: ",msgE,tries) == 0)
         {
             auxiliarID = atoi(bufferID);
             ret = auxiliarID;
@@ -352,49 +352,46 @@ int socio_modifySocio(Socio* pSocios,int len,char* msgE,int escape,int tries)
     if(pSocios != NULL && len > 0)
     {
        auxiliarID = socio_getID(pSocios,len,msgE,tries);
-       if(auxiliarID >= 1)
+       if(auxiliarID >= 0)
        {
             posID = socio_findPosID(pSocios,len,auxiliarID);
             if(posID != -1)
             {
-                pSocios[posID].isEmpty = 1;
-                ret = 0;
+                do
+                {
+                    getIntInRange(&opcion,"\n1)Ingrese nuevo nombre\n2)Ingrese nuevo apellido\n3)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",msgE,1,escape,tries);
+                    switch(opcion)
+                    {
+                        case 1:
+                        {
+                            if(getStringLetras(bufferName,"\nIngrese nombre: ",msgE,tries) == 0)
+                            {
+                                strncpy(pSocios[posID].name,bufferName,sizeof(bufferName));
+                                ret = 0;
+                            }
+                            break;
+                        }
+                        case 2:
+                        {
+                            if((getStringLetras(bufferSurname,"\nIngrese apellido: ",msgE,tries) == 0))
+                            {
+                                strncpy(pSocios[posID].surname,bufferSurname,sizeof(bufferSurname));
+                                ret = 0;
+                            }
+                            break;
+                        }
+
+                    }
+                }while(opcion != escape);
             }
             else
             {
                 printf("\n\tID inexistente\t\n");
             }
 
+
+
         }
-        do
-        {
-            getIntInRange(&opcion,"\n1)Ingrese nuevo nombre\n2)Ingrese nuevo apellido\n3)Salir\n\n~~~~~~~~~~~~~~~~~~~~~~\n",msgE,1,escape,tries);
-            switch(opcion)
-            {
-                case 1:
-                {
-                    if(getStringLetras(bufferName,"\nIngrese nombre: ",msgE,tries) == 0)
-                       {
-                           strncpy(pSocios[posID].name,bufferName,sizeof(bufferName));
-                           ret = 0;
-                       }
-                       break;
-                }
-                case 2:
-                {
-                   if((getStringLetras(bufferSurname,"\nIngrese apellido: ",msgE,tries) == 0))
-                   {
-                       strncpy(pSocios[posID].surname,bufferSurname,sizeof(bufferSurname));
-                       ret = 0;
-                   }
-                   break;
-                }
-                default:
-                {
-                    ret = -1;
-                }
-            }
-        }while(ret == -1 || opcion != escape);
     }
     return ret;
 }

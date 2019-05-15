@@ -117,7 +117,7 @@ int prestamo_getID(Prestamo* pPrestamos, int len, char* msgE, int tries)
 
     if(pPrestamos != NULL && len > 0)
     {
-        if(getStringNumerosInt(bufferID,"\nIngrese ID: ",msgE,tries) == 0)
+        if(getStringNumerosInt(bufferID,"\nIngrese ID Prestamo: ",msgE,tries) == 0)
         {
             auxiliarID = atoi(bufferID);
             ret = auxiliarID;
