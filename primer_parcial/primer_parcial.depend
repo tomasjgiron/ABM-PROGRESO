@@ -1,0 +1,106 @@
+# depslib dependency file v1.0
+1558052881 source:/home/alumno/primer_parcial/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"musico.h"
+	"instrumento.h"
+	"orquesta.h"
+
+1558053856 source:/home/alumno/primer_parcial/arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+
+1557952166 /home/alumno/primer_parcial/arraynuevo.h
+
+1558049546 source:/home/alumno/primer_parcial/instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"instrumento.h"
+
+1558051973 source:/home/alumno/primer_parcial/musico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"musico.h"
+	"orquesta.h"
+	"instrumento.h"
+
+1558051402 /home/alumno/primer_parcial/musico.h
+	"orquesta.h"
+	"instrumento.h"
+
+1558048252 /home/alumno/primer_parcial/orquesta.h
+
+1558048489 /home/alumno/primer_parcial/instrumento.h
+
+1558048193 source:/home/alumno/primer_parcial/orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"orquesta.h"
+
+1558055109 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\arraynuevo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+
+1558055109 c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\arraynuevo.h
+
+1558502151 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"instrumento.h"
+
+1558554534 c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\instrumento.h
+
+1558496306 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"musico.h"
+	"instrumento.h"
+	"orquesta.h"
+
+1558510828 c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\musico.h
+	"orquesta.h"
+	"instrumento.h"
+
+1558555183 c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\orquesta.h
+
+1558502127 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"orquesta.h"
+
+1558546738 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arraynuevo.h"
+	"musico.h"
+	"orquesta.h"
+	"instrumento.h"
+
+1558546514 source:c:\users\tomas\desktop\laboratorio_programacion-1\primerparcial_labo_1-master\primer_parcial\informes.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"arraynuevo.h"
+	"orquesta.h"
+	"musico.h"
+	"instrumento.h"
+
